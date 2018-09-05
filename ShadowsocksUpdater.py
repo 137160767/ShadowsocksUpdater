@@ -1,6 +1,10 @@
+#!/usr/bin/python
+#coding=utf-8
+
 import requests
 from lxml import html
 import json
+import os
 
 headers={
 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
@@ -34,12 +38,15 @@ print(left_traffic)
 
 config_path='C://Users//Jiutong Zhao//Desktop//'
 
-with open(config_path+'gui-config.json', 'r') as f:
+with open(config_path+'gui-config.json', 'r',encoding='utf-8') as f:
     data = json.load(f)
 
 data['configs'][-1]['remarks']='剩余流量:%s,本机IP:%s'%(left_traffic,ip_address)
 data['configs'][-1]['server']=phy_address
 data['configs'][-1]['server_port']='0'
 
-with open('C://Users//Jiutong Zhao//Desktop//gui-config.json', 'w') as f:
-    json.dump(data, f)
+with open('C://Users//Jiutong Zhao//Desktop//gui-config.json', 'w',encoding='utf-8') as f:
+    json.dump(data, f,indent=2)
+
+os.system(r"TASKKILL /F /IM shadowsocks.exe")
+os.system("\"C:\\Users\\Jiutong Zhao\\Desktop\\Shadowsocks.exe\"")
