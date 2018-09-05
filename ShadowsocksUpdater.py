@@ -32,7 +32,9 @@ left_traffic=selector.xpath('//*[@id="manage"]/div/div[1]/div[2]/table/tbody/tr[
 
 print(left_traffic)
 
-with open('C://Users//Jiutong Zhao//Desktop//gui-config.json', 'r') as f:
+config_path='C://Users//Jiutong Zhao//Desktop//'
+
+with open(config_path+'gui-config.json', 'r') as f:
     data = json.load(f)
 
 data['configs'][-1]['remarks']='剩余流量:%s,本机IP:%s'%(left_traffic,ip_address)
